@@ -1,0 +1,95 @@
+body {
+    background-color: #000;
+    font-family: 'Roboto', 'sans-serif';
+    color: #fff;
+}
+img {
+    max-width: 100%;
+}
+header {
+    font-size: 36px;
+    font-style: italic;
+    color: #000;
+    text-align: center;
+    background-color: #50FF44;
+    height: 74px;
+    margin-bottom: 30px;
+    line-height: 74px;
+}
+.panel {
+    width: 630px;
+    margin: 24px auto;
+}
+.push-right {
+    float: right;
+    font-size: 20px;
+}
+.container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+.page {
+    width: 630px;
+}
+.page-image {
+}
+.arrow-left,
+.arrow-right,
+.page {
+    flex: 0 0 auto;
+}
+.arrow-left,
+.arrow-right {
+    color: #fff;
+    font-size: 40px;
+    padding: 0 20px;
+}
+.slider-container {
+    position: relative;
+    width: 630px;
+    margin: 0 auto;
+}
+.slider {
+    margin: 20px 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.clearfix::after {
+    display: block;
+    content: "";
+    clear: both;
+}
+.slider-inner {
+    display: inline-block;
+}
+.page-num {
+    color: #fff;
+    display: block;
+    text-align: center;
+}
+.card {
+    width: 80px;
+    margin: 0 10px;
+    float: left;
+}
+.prev,
+.next {
+    position: absolute;
+    display: inline-block;
+    width: 40px;
+    height: 120px;
+    top: 18px;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 5;
+    cursor: pointer;
+}
+.prev {
+    left: 0;
+}
+.next {
+    right: 0;
+}

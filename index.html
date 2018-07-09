@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <meta http-equiv="content-language" content="zh-tw">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=1">
+    <title>Comicviewer - THE F2E</title>
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.0/normalize.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:500">
+    <link rel="stylesheet" href="css/comicviewer.css">
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header>Comicviewer</header>
+        <div class="panel">
+            <span>My Hexschool
+                <i class="fas fa-caret-right"></i>
+            </span>
+            <select>
+                <option>Chapter 1</option>
+                <option>Chapter 2</option>
+                <option>Chapter 3</option>
+            </select>
+            <select>
+                <option>Page 01</option>
+                <option>Page 02</option>
+                <option>Page 03</option>
+            </select>
+            <div class="push-right">
+                <i class="fas fa-cog"></i>
+                <i class="fas fa-square-full"></i>
+                <i class="far fa-moon"></i>
+            </div>
+        </div>
+        <div class="container">
+            <a class="arrow-left" href=""><i class="fas fa-chevron-left"></i></a>
+            <div class="page"><img class="page-image" src="images/storyboard-1.png"></div>
+            <a class="arrow-right" href=""><i class="fas fa-chevron-right"></i></a>
+        </div>
+        <div class="slider-container">
+            <div id="slider1" class="slider">
+                <div class="prev"></div>
+                <div class="next"></div>
+                <div class="slider-inner clearfix">
+                    <a class="card" v-for="(page,index) in pages">
+                        <span class="page-num">0{{ index + 1 }}</span>
+                        <img :src="page.image">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+function simpleCarousel(slider) {
+    var slider,
+        sliderInner,
+        cardArr,
+        cardStyle,
+        cardWidth,
+        navPrev,
+        navNex;
+
+    slider = document.getElementById("slider1");
+    sliderInner = slider.querySelector(".slider-inner");
+    navPrev = slider.querySelector(".prev");
+    navNext = slider.querySelector(".next");
+
+    if (sliderInner.innerHTML !== "") {
+        cardArr = Array.prototype.slice.call(sliderInner.querySelectorAll(".card"));
+        cardStyle = cardArr[0].currentStyle || window.getComputedStyle(cardArr[0]);
+        cardWidth = cardArr[0].offsetWidth + parseInt(cardStyle.marginLeft, 10) + parseInt(cardStyle.marginRight, 10);
+        sliderInner.style.width = (cardWidth * cardArr.length) + "px";
+
+        navPrev.addEventListener('click', function (e) {
+            console.log("left");
+            var origin = slider.scrollLeft;
+            slider.scrollLeft = origin - cardWidth;
+        });
+
+        navNext.addEventListener('click', function (e) {
+            console.log("right");
+            var origin = slider.scrollLeft;
+            slider.scrollLeft = origin + cardWidth;
+        });
+    }
+}
+
+let vm = new Vue({
+    el: "#app",
+    data: {
+        pages: [
+            {
+                image: 'images/storyboard-1.png'
+            },
+            {
+                image: 'images/storyboard-2.png'
+            },
+            {
+                image: 'images/storyboard-3.png'
+            },
+            {
+                image: 'images/storyboard-4.png'
+            },
+            {
+                image: 'images/storyboard-5.png'
+            },
+            {
+                image: 'images/storyboard-6.png'
+            },
+            {
+                image: 'images/storyboard-7.png'
+            },
+            {
+                image: 'images/storyboard-8.png'
+            }
+        ]
+    }
+});
+
+simpleCarousel('slider1');
+</script>
+</html>
